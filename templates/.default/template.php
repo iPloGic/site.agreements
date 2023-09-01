@@ -15,22 +15,23 @@
 use \Bitrix\Main\Localization\Loc,
 	\Bitrix\Main\Application;
 
-//echo "<pre>"; print_r($arResult); echo "</pre>";
+$this->addExternalJS($templateFolder . "/jquery.cookie.js");
+
 
 if ($arResult["SHOW"] != "N") { ?>
 	<div id="site-agreements" class="site-agreements-wrapper">
 		<div class="site-agreements-back"></div>
 		<div class="site-agreements">
+			<?=Loc::getMessage("IPL_SA_TEXT")?> 
 			<div class="site-agreements-close">
-				<i class="fas fa-times"></i>
+				<button class="btn_violet">Принять</button>
 			</div>
-			<?=Loc::getMessage("IPL_SA_TEXT")?>
 		</div>
 	</div>
 	<script>
 		$(function(){
 			$(document).ready(function() {
-				$("#site-agreements .site-agreements-close").on("click", function(){
+				$("#site-agreements .site-agreements-close button").on("click", function(){
 					$("#site-agreements").hide();
 					$.cookie('ipl-site-agreements-<?=$arParams["COOKIE_SUFFIX"]?>', 'hide', {
 						expires: <?=$arParams["COOKIE_EXPIRES"]?>
